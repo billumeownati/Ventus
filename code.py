@@ -6,6 +6,7 @@ import shutil
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtCore import QTimer
+import qtawesome as qta
 
 def get_fan_data():
     if not shutil.which("sensors"):
@@ -41,8 +42,7 @@ def get_fan_data():
 class FanTray(QSystemTrayIcon):
     def __init__(self):
         super().__init__()
-
-        self.setIcon(QIcon.fromTheme("temperature-cold") if QIcon.hasThemeIcon("temperature-cold") else QIcon.fromTheme("utilities-system-monitor"))
+        self.setIcon(qta.icon("mdi.fan"))
 
         self.menu = QMenu()
         self.fan_actions = []
@@ -61,7 +61,7 @@ class FanTray(QSystemTrayIcon):
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_ui)
-        self.timer.start(1500)
+        self.timer.start(3000)
 
         self.update_ui()
 

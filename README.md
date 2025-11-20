@@ -55,7 +55,7 @@ sudo sensors-detect
 
 ### 3. Install Python Libraries
 ```bash
-pip install PyQt6
+pip install pyqt6 qtawesome
 ```
 
 ### 4. Clone & Run
